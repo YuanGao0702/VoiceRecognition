@@ -7,15 +7,15 @@ from pydub import AudioSegment
 
 def main():
 	r = sr.Recognizer() 
-	harvard = sr.AudioFile('recordedFile.wav')
+	harvard = sr.AudioFile('voice.wav')
 	with harvard as source:
 		audio = r.record(source)
 
 	print( type(audio))
 	#,language="zh-CN"
-	print(r.recognize_google(audio))
+	print(r.recognize_google(audio)
 
-formats_to_convert = ['.mp3']
+formats_to_convert = ['.m4a']
 
 def convert():
 	for (dirpath, dirnames, filenames) in os.walk("./"):
@@ -29,7 +29,8 @@ def convert():
 					track = AudioSegment.from_file(filepath,
 							file_extension_final)
 					wav_filename = filename.replace(file_extension_final, 'wav')
-					wav_path = dirpath + '/' + wav_filename
+					#wav_path = dirpath + '/' + wav_filename
+					wav_path = dirpath + '/' + "voice.wav"
 					print('CONVERTING: ' + str(filepath))
 					file_handle = track.export(wav_path, format='wav')
 					os.remove(filepath)
@@ -80,6 +81,6 @@ def record():
 	waveFile.writeframes(b''.join(Recordframes))
 	waveFile.close()
 
-record()
-#convert()
-main()					
+#record()
+convert()
+#main()					
